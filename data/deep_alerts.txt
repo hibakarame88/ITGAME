@@ -1,0 +1,15 @@
+⚠️ Requêtes DNS suspectes détectées :
+
+
+🧠 Groupement de noms de domaine suspects (NLP) :
+
+Groupe 1 (1 domaines) :
+  - _ldap._tcp.Default-First-Site-Name._sites.dc._msdcs.littletigers.info
+
+Groupe 2 (3 domaines) :
+  - _ldap._tcp.Default-First-Site-Name._sites.ForestDnsZones.littletigers.info
+  - _ldap._tcp.Default-First-Site-Name._sites.littletigers.info
+  - _ldap._tcp.Default-First-Site-Name._sites.LittleTigers-DC.littletigers.info
+
+Groupe 3 (1 domaines) :
+  - _ldap._tcp.Default-First-Site-Name._sites.DomainDnsZones.littletigers.info

@@ -1,0 +1,2 @@
+⚠️ IP avec trafic excessif détectée (possible scan)
+⚠️ Nombre élevé de paquets UDP détecté (potentiel flood)
