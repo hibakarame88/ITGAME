@@ -1,47 +1,68 @@
 from openai import OpenAI
 import json
+import pandas as pd
 
 def enrich_with_ai():
     try:
-        # Charger les infos de l'hôte
+        # Charger les infos hôte
         with open("data/resultat.json", "r") as f:
             host_info = json.load(f)["Host Information"]
-        mac = host_info.get("mac", "inconnu")
-        ip = host_info.get("ip", "inconnu")
-        hostname = host_info.get("hostname", "inconnu")
-        username = host_info.get("username", "inconnu")
+        mac = host_info.get("mac", "non détecté")
+        ip = host_info.get("ip", "non détectée")
+        hostname = host_info.get("hostname", "non détecté")
+        username = host_info.get("username", "non détecté")
 
-        # Charger les domaines DNS s'ils existent
-        dns_domains_summary = "Aucun domaine suspect détecté."
+        # Charger alertes classiques
         try:
-            import pandas as pd
-            dns_df = pd.read_csv("data/deep_enriched.csv")
-            dns_domains = dns_df["domain"].unique().tolist()[:10]
-            dns_domains_summary = "\n".join(dns_domains)
+            with open("data/alerts.txt", "r", encoding="utf-8") as f:
+                alerts = f.read().strip()
         except:
-            pass
+            alerts = "Aucune alerte détectée."
 
-        # 👉 ICI on construit le prompt
-        PROMPT_AI = f"""
-Voici les informations extraites d'une analyse réseau :
+        # Charger alertes avancées (PyShark)
+        try:
+            with open("data/deep_alerts.txt", "r", encoding="utf-8") as f:
+                deep_alerts = f.read().strip()
+        except:
+            deep_alerts = "Aucune alerte avancée détectée."
+
+        # DNS suspects enrichis
+        dns_summary = ""
+        try:
+            dns_df = pd.read_csv("data/deep_enriched.csv")
+            top_dns = dns_df[["domain", "score"]].sort_values(by="score", ascending=False).head(5)
+            dns_summary = "\n".join([f"- {row['domain']} (score : {row['score']})" for _, row in top_dns.iterrows()])
+        except:
+            dns_summary = "Aucun domaine suspect détecté."
+
+        # Prompt structuré pour Mistral
+        prompt = f"""
+Tu es un assistant cybersécurité. Explique en langage accessible les éléments suivants pour une analyse réseau :
+
+📌 Informations système :
 - Adresse MAC : {mac}
 - Adresse IP : {ip}
-- Nom de l'hôte : {hostname}
-- Nom d'utilisateur : {username}
+- Nom d'hôte : {hostname}
+- Utilisateur : {username}
 
-Voici également une liste de domaines DNS suspects détectés (si disponibles) :
-{dns_domains_summary}
+🚨 Alertes réseau détectées :
+{alerts}
 
-Génère un résumé de l’activité réseau de cette machine, en expliquant :
-1. Ce que ces informations révèlent sur la machine
-2. Si un comportement malveillant peut être déduit
-3. Quels éléments doivent être surveillés
-4. Une recommandation pour un administrateur réseau
+🧪 Alertes avancées (analyse comportementale) :
+{deep_alerts}
 
-Sois concis mais précis.
+🌐 Domaines DNS suspects détectés :
+{dns_summary}
+
+Ta mission :
+1. Expliquer en quoi ces données révèlent une activité potentiellement malveillante.
+2. Identifier les risques : infection, fuite, commande à distance, etc.
+3. Donner des exemples de menaces possibles.
+4. Proposer des actions concrètes : bloquer IP, isoler PC, informer utilisateur, changer mots de passe.
+5. Écrire pour un lecteur non technique, avec des titres, des emojis et des phrases simples.
 """
 
-        # Appel à Mistral
+        # Appel à l’API Mistral
         client = OpenAI(
             base_url="https://api.scaleway.ai/ac596d48-8004-4950-be23-dca49fca778f/v1",
             api_key="695f4799-c556-476c-9f04-25b7b192b4cd"
@@ -50,10 +71,10 @@ Sois concis mais précis.
         response = client.chat.completions.create(
             model="mistral-nemo-instruct-2407",
             messages=[
-                {"role": "system", "content": "Tu es un assistant expert en cybersécurité."},
-                {"role": "user", "content": PROMPT_AI}
+                {"role": "system", "content": "Tu es un assistant cybersécurité pédagogique."},
+                {"role": "user", "content": prompt}
             ],
-            max_tokens=512,
+            max_tokens=1200,
             temperature=0.3
         )
 
@@ -62,7 +83,7 @@ Sois concis mais précis.
         with open("data/enriched.txt", "w", encoding="utf-8") as f:
             f.write(result_text)
 
-        print("🧠 Résumé IA enregistré dans data/enriched.txt")
+        print("✅ Explication IA enregistrée dans data/enriched.txt")
 
     except Exception as e:
-        print(f"⚠️ Erreur enrichissement IA : {e}")
+        print(f"⚠️ Erreur IA : {e}")

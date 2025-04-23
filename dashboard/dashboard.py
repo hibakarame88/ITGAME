@@ -1,127 +1,91 @@
 import streamlit as st
 import pandas as pd
-import base64
-import io
 import json
-from fpdf import FPDF
 
 st.set_page_config(page_title="IT Game Master", layout="wide")
-st.title("🛡️ IT Game Master - Analyse de trafic réseau enrichie")
+st.title("🛡️ IT Game Master - Analyse réseau enrichie & pédagogique")
 
-# 🏁 Flag et informations extraites
-st.subheader("🏁 Résultat de l'analyse et soumission")
-try:
-    with open("data/resultat.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-    host_info = data.get("Host Information", {})
-
-    mac = host_info.get("mac", "N/A")
-    ip = host_info.get("ip", "N/A")
-    hostname = host_info.get("hostname", "N/A")
-    username = host_info.get("username", "N/A")
-
-    st.success(f"🧑‍💻 Utilisateur : **{username}**")
-    st.info(f"💻 Hostname : **{hostname}**")
-    st.warning(f"🌐 IP : **{ip}**")
-    st.error(f"🔗 MAC : **{mac}**")
-
-    if "flag" in host_info:
-        st.success(f"🏁 Flag obtenu : `{host_info['flag']}`")
-    else:
-        try:
-            with open("data/flag.json", "r", encoding="utf-8") as f:
-                flag_data = json.load(f)
-                flag = flag_data.get("flag")
-                if flag:
-                    st.success(f"🏁 Flag obtenu : `{flag}`")
-        except FileNotFoundError:
-            st.info("🕵️‍♀️ Aucune soumission de flag encore disponible.")
-
-except FileNotFoundError:
-    st.warning("Fichier 'resultat.json' manquant ou incorrect.")
-
-# 📈 Résumé du trafic
-st.subheader("📈 Résumé du trafic réseau")
+# --- Résumé de trafic réseau ---
+st.subheader("📊 Statistiques globales du trafic réseau")
 try:
     df = pd.read_csv("data/summary.csv")
     st.dataframe(df)
 
-    st.subheader("📌 Statistiques IP (source/destination)")
     col1, col2 = st.columns(2)
     with col1:
-        st.bar_chart(df["src_ip"].value_counts())
+        st.bar_chart(df["src_ip"].value_counts(), use_container_width=True)
     with col2:
-        st.bar_chart(df["dst_ip"].value_counts())
+        st.bar_chart(df["dst_ip"].value_counts(), use_container_width=True)
 
-    st.subheader("📌 Protocole utilisé")
+    st.subheader("📌 Protocoles analysés")
     st.bar_chart(df["proto"].value_counts())
-except FileNotFoundError:
-    st.warning("Fichier 'summary.csv' non trouvé. Exécutez l'analyse d'abord.")
 
-# 🧠 Résumé IA (simple)
-st.subheader("🧠 Analyse IA du trafic (Mistral)")
+except FileNotFoundError:
+    st.warning("Fichier summary.csv introuvable. Lancez l'analyse d'abord.")
+
+# --- Informations hôte & flag ---
+st.subheader("🔎 Informations extraites de la machine analysée")
 try:
-    with open("data/enriched.txt", "r") as f:
-        st.text(f.read())
-except FileNotFoundError:
-    st.warning("Aucune analyse IA disponible.")
+    with open("data/resultat.json", "r") as f:
+        host = json.load(f)["Host Information"]
+    st.write(f"**👤 Utilisateur** : `{host.get('username', 'N/A')}`")
+    st.write(f"**🖥️ Nom de l'hôte** : `{host.get('hostname', 'N/A')}`")
+    st.write(f"**🌐 Adresse IP** : `{host.get('ip', 'N/A')}`")
+    st.write(f"**🔗 Adresse MAC** : `{host.get('mac', 'N/A')}`")
+except:
+    st.warning("Aucune information d'hôte disponible.")
 
-# 🚨 Alertes classiques
-st.subheader("🚨 Alertes détectées")
 try:
-    with open("data/alerts.txt", "r", encoding="utf-8") as f:
-        alerts = f.readlines()
-    for alert in alerts:
-        st.error(alert.strip())
-except FileNotFoundError:
-    st.info("Aucune alerte détectée pour le moment.")
+    with open("data/flag.json", "r") as f:
+        flag = json.load(f).get("flag")
+        if flag:
+            st.success(f"🏁 Flag obtenu : `{flag}`")
+except:
+    st.info("Flag non encore disponible.")
 
-# 🌍 IP enrichies
-st.subheader("🌍 Informations IP enrichies")
+# --- Analyse IA enrichie ---
+st.subheader("🧠 Analyse IA explicative (langage accessible)")
 try:
-    ip_df = pd.read_csv("data/enriched_ips.csv")
-    st.dataframe(ip_df)
-except FileNotFoundError:
-    st.info("Fichier 'enriched_ips.csv' non trouvé.")
+    with open("data/enriched.txt", "r", encoding="utf-8") as f:
+        content = f.read()
+    st.markdown(content, unsafe_allow_html=True)
+except:
+    st.info("Aucune analyse IA disponible.")
 
-# 🧪 Alertes avancées (PyShark)
-st.subheader("🧪 Alertes avancées (PyShark)")
+# --- Alertes avancées ---
+st.subheader("🚨 Alertes comportementales (analyse PyShark)")
 try:
     with open("data/deep_alerts.txt", "r", encoding="utf-8") as f:
-        deep_alerts = f.readlines()
-    for alert in deep_alerts:
-        st.warning(alert.strip())
+        lines = [line.strip() for line in f.readlines() if line.strip()]
+        if lines:
+            for line in lines:
+                if line.startswith("Groupe"):
+                    st.markdown(f"**🧩 {line}**")
+                else:
+                    st.markdown(f"- `{line}`")
+        else:
+            st.info("✅ Aucune alerte avancée n'a été détectée.")
 except FileNotFoundError:
-    st.info("Aucune alerte PyShark détectée.")
+    st.info("Fichier deep_alerts.txt introuvable.")
 
-# 🌐 Analyse DNS enrichie
-st.subheader("🌐 Analyse enrichie des domaines DNS")
+# --- DNS enrichis ---
+st.subheader("🌐 Analyse enrichie des domaines DNS suspects")
 try:
-    enriched_df = pd.read_csv("data/deep_enriched.csv")
-
-    if "score" in enriched_df.columns:
+    df_dns = pd.read_csv("data/deep_enriched.csv")
+    if not df_dns.empty:
         score_min = st.slider("🎯 Score minimum de dangerosité", 0, 100, 50)
-        filtered_df = enriched_df[enriched_df["score"] >= score_min]
+        filtered = df_dns[df_dns["score"] >= score_min]
+        for _, row in filtered.iterrows():
+            with st.expander(f"🌐 {row.get('domain')}"):
+                st.markdown(f"""
+- **Score** : {row.get('score')}
+- **Pays** : {row.get('country')}
+- **Fournisseur** : {row.get('org')}
+- **ASN** : {row.get('asn')}
+- **Type de menace** : {row.get('threat_type')}
+- **IP cible** : {row.get('ip')}
+""")
     else:
-        filtered_df = enriched_df
-
-    st.dataframe(filtered_df)
-
-    # 📄 Export PDF
-    if st.button("📄 Télécharger le rapport PDF"):
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.set_font("Arial", size=10)
-        pdf.cell(200, 10, txt="Rapport DNS Suspects - IT Game Master", ln=True, align="C")
-
-        for _, row in filtered_df.iterrows():
-            row_txt = "\n".join([f"{k}: {v}" for k, v in row.to_dict().items()])
-            pdf.multi_cell(0, 10, txt=row_txt + "\n", border=0)
-
-        pdf_output = io.BytesIO()
-        pdf.output(pdf_output)
-        b64 = base64.b64encode(pdf_output.getvalue()).decode()
-        href = f'<a href="data:application/pdf;base64,{b64}" download="rapport_dns.pdf">📥 Télécharger le rapport PDF</a>'
-        st.markdown(href, unsafe_allow_html=True)
+        st.info("Aucun domaine DNS dangereux détecté.")
 except FileNotFoundError:
-    st.info("Aucune analyse enrichie n’a encore été effectuée.")
+    st.info("Fichier de domaines enrichis non trouvé.")
