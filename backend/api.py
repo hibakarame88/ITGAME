@@ -11,11 +11,11 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 @app.route("/api/resultat", methods=["GET"])
 def get_resultat():
     """
-    Récupère les informations extraites de la machine
+    Récupère les informations extraites de la machine analysée
     ---
     responses:
       200:
-        description: Données de la machine
+        description: Informations hôte analysé
         content:
           application/json:
             example:
@@ -34,7 +34,17 @@ def get_resultat():
 
 @app.route("/api/flag", methods=["GET"])
 def get_flag():
-    """Retourne le flag capturé"""
+    """
+    Récupère le flag extrait de l'analyse
+    ---
+    responses:
+      200:
+        description: Flag de validation capturé
+        content:
+          application/json:
+            example:
+              flag: "HACK{abcd1234efgh}"
+    """
     path = os.path.join(DATA_DIR, "flag.json")
     if os.path.exists(path):
         with open(path) as f:
@@ -44,7 +54,17 @@ def get_flag():
 
 @app.route("/api/enriched", methods=["GET"])
 def get_enriched():
-    """Retourne le résumé IA généré"""
+    """
+    Retourne le résumé IA de l'activité réseau (texte libre)
+    ---
+    responses:
+      200:
+        description: Analyse IA enrichie
+        content:
+          application/json:
+            example:
+              text: "Cette machine a présenté un comportement suspect vers un domaine classé comme malveillant..."
+    """
     path = os.path.join(DATA_DIR, "enriched.txt")
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
@@ -54,7 +74,17 @@ def get_enriched():
 
 @app.route("/api/alerts", methods=["GET"])
 def get_alerts():
-    """Liste les alertes réseau détectées"""
+    """
+    Liste des alertes réseau simples (classiques)
+    ---
+    responses:
+      200:
+        description: Liste des alertes réseau
+        content:
+          application/json:
+            example:
+              alerts: ["Suspicious DNS request to unknown domain"]
+    """
     path = os.path.join(DATA_DIR, "alerts.txt")
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
@@ -64,7 +94,17 @@ def get_alerts():
 
 @app.route("/api/deep_alerts", methods=["GET"])
 def get_deep_alerts():
-    """Liste les alertes avancées détectées"""
+    """
+    Liste des alertes comportementales avancées (ex : regroupements DNS suspects)
+    ---
+    responses:
+      200:
+        description: Alertes PyShark ou NLP DNS avancées
+        content:
+          application/json:
+            example:
+              deep_alerts: ["Groupe 1", "domain1.bad.com", "domain2.bad.com"]
+    """
     path = os.path.join(DATA_DIR, "deep_alerts.txt")
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:

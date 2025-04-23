@@ -1,0 +1,351 @@
+{
+    "timestamp": "20250423_202728",
+    "pcap_file": "data/latest.pcap",
+    "statistics": {
+        "total_ips": 71,
+        "malicious_ips": 2,
+        "suspicious_ips": 1,
+        "total_domains": 67,
+        "malicious_domains": 0,
+        "suspicious_domains": 0,
+        "total_urls": 4,
+        "malicious_urls": 4,
+        "suspicious_urls": 0
+    },
+    "results": {
+        "ips": {
+            "239.255.255.250": {
+                "ip": "239.255.255.250",
+                "last_analysis_stats": {
+                    "malicious": 1,
+                    "suspicious": 0,
+                    "undetected": 32,
+                    "harmless": 61,
+                    "timeout": 0
+                },
+                "country": "Unknown",
+                "as_owner": "Unknown",
+                "malicious": true,
+                "suspicious": false
+            },
+            "204.79.197.200": {
+                "ip": "204.79.197.200",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 1,
+                    "undetected": 31,
+                    "harmless": 62,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": true
+            },
+            "52.114.158.91": {
+                "ip": "52.114.158.91",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 32,
+                    "harmless": 62,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "84.232.252.62": {
+                "ip": "84.232.252.62",
+                "last_analysis_stats": {
+                    "malicious": 1,
+                    "suspicious": 0,
+                    "undetected": 33,
+                    "harmless": 60,
+                    "timeout": 0
+                },
+                "country": "RO",
+                "as_owner": "Digi Romania S.A.",
+                "malicious": true,
+                "suspicious": false
+            },
+            "40.126.29.11": {
+                "ip": "40.126.29.11",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 32,
+                    "harmless": 62,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "52.114.88.29": {
+                "ip": "52.114.88.29",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "country": "GB",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "131.253.33.254": {
+                "ip": "131.253.33.254",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "13.107.42.23": {
+                "ip": "13.107.42.23",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "52.152.108.96": {
+                "ip": "52.152.108.96",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 30,
+                    "harmless": 64,
+                    "timeout": 0
+                },
+                "country": "US",
+                "as_owner": "MICROSOFT-CORP-MSN-AS-BLOCK",
+                "malicious": false,
+                "suspicious": false
+            },
+            "5.14.146.38": {
+                "ip": "5.14.146.38",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 41,
+                    "harmless": 53,
+                    "timeout": 0
+                },
+                "country": "RO",
+                "as_owner": "Digi Romania S.A.",
+                "malicious": false,
+                "suspicious": false
+            }
+        },
+        "domains": {
+            "fe2cr.update.microsoft.com": {
+                "domain": "fe2cr.update.microsoft.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "dualrunning.net": {
+                "domain": "dualrunning.net",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 41,
+                    "harmless": 53,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "client.wns.windows.com": {
+                "domain": "client.wns.windows.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "categories": {
+                    "alphaMountain.ai": "Information Technology (alphaMountain.ai)",
+                    "Xcitium Verdict Cloud": "computing & technology",
+                    "Sophos": "information technology",
+                    "Forcepoint ThreatSeeker": "information technology"
+                },
+                "malicious": false,
+                "suspicious": false
+            },
+            "teams-ring.msedge.net": {
+                "domain": "teams-ring.msedge.net",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 30,
+                    "harmless": 64,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "2.1.16.172.in-addr.arpa": {
+                "domain": "2.1.16.172.in-addr.arpa",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 32,
+                    "harmless": 62,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "edge.activity.windows.com": {
+                "domain": "edge.activity.windows.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 30,
+                    "harmless": 64,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "storeedgefd.dsx.mp.microsoft.com": {
+                "domain": "storeedgefd.dsx.mp.microsoft.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 28,
+                    "harmless": 66,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "fe3cr.delivery.mp.microsoft.com": {
+                "domain": "fe3cr.delivery.mp.microsoft.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 31,
+                    "harmless": 63,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            },
+            "config.edge.skype.com": {
+                "domain": "config.edge.skype.com",
+                "last_analysis_stats": {
+                    "malicious": 0,
+                    "suspicious": 0,
+                    "undetected": 30,
+                    "harmless": 64,
+                    "timeout": 0
+                },
+                "categories": {},
+                "malicious": false,
+                "suspicious": false
+            }
+        },
+        "urls": {
+            "http://81.17.23.125:2318/favicon.ico": {
+                "url": "http://81.17.23.125:2318/favicon.ico",
+                "last_analysis_stats": {
+                    "malicious": 1,
+                    "suspicious": 0,
+                    "undetected": 10,
+                    "harmless": 82,
+                    "timeout": 0
+                },
+                "categories": {
+                    "Forcepoint ThreatSeeker": "personals and dating",
+                    "Comodo Valkyrie Verdict": "unknown"
+                },
+                "malicious": true,
+                "suspicious": false
+            },
+            "http://81.17.23.125:2318/": {
+                "url": "http://81.17.23.125:2318/",
+                "last_analysis_stats": {
+                    "malicious": 3,
+                    "suspicious": 0,
+                    "undetected": 11,
+                    "harmless": 75,
+                    "timeout": 0
+                },
+                "categories": {
+                    "Forcepoint ThreatSeeker": "malicious web sites. personals and dating"
+                },
+                "malicious": true,
+                "suspicious": false
+            },
+            "http://buyer-remindment.com:8088/templates/file6.bin": {
+                "url": "http://buyer-remindment.com:8088/templates/file6.bin",
+                "last_analysis_stats": {
+                    "malicious": 7,
+                    "suspicious": 0,
+                    "undetected": 30,
+                    "harmless": 60,
+                    "timeout": 0
+                },
+                "categories": {
+                    "alphaMountain.ai": "Malicious (alphaMountain.ai)",
+                    "Sophos": "command and control",
+                    "Forcepoint ThreatSeeker": "business and economy"
+                },
+                "malicious": true,
+                "suspicious": false
+            },
+            "http://insiderushings.com:8088/wp-content/Receipt-9650354.xls?evagk=2MyeEdhGPszYX": {
+                "url": "http://insiderushings.com:8088/wp-content/Receipt-9650354.xls?evagk=2MyeEdhGPszYX",
+                "last_analysis_stats": {
+                    "malicious": 12,
+                    "suspicious": 0,
+                    "undetected": 20,
+                    "harmless": 58,
+                    "timeout": 0
+                },
+                "categories": {
+                    "Sophos": "spyware and malware",
+                    "Forcepoint ThreatSeeker": "malicious web sites",
+                    "Xcitium Verdict Cloud": "media sharing",
+                    "Webroot": "Malware Sites"
+                },
+                "malicious": true,
+                "suspicious": false
+            }
+        }
+    }
+}

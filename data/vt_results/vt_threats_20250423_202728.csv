@@ -1,0 +1,8 @@
+Indicator,Type,Threat Level,Engines Detected,Country,Owner,Notes
+239.255.255.250,IP,Malicious,1,Unknown,Unknown,Detected by 1 security vendors
+204.79.197.200,IP,Suspicious,0,US,MICROSOFT-CORP-MSN-AS-BLOCK,Detected by 0 security vendors
+84.232.252.62,IP,Malicious,1,RO,Digi Romania S.A.,Detected by 1 security vendors
+http://81.17.23.125:2318/favicon.ico,URL,Malicious,1,,,"Categories: personals and dating, unknown"
+http://81.17.23.125:2318/,URL,Malicious,3,,,Categories: malicious web sites. personals and dating
+http://buyer-remindment.com:8088/templates/file6.bin,URL,Malicious,7,,,"Categories: Malicious (alphaMountain.ai), command and control, business and economy"
+http://insiderushings.com:8088/wp-content/Receipt-9650354.xls?evagk=2MyeEdhGPszYX,URL,Malicious,12,,,"Categories: spyware and malware, malicious web sites, media sharing, Malware Sites"
