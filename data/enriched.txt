@@ -1,14 +1,11 @@
-Based on the provided network traffic data, here's a breakdown and analysis:
+Based on the provided network traffic data, here's an analysis:
 
-1. **Local Traffic (10.0.0.0/16 network):**
-   - There's significant two-way TCP traffic between 10.0.0.10 and 10.0.0.227 (352 and 386 packets, respectively). This could indicate a persistent connection or regular communication between these two hosts.
-   - There's also UDP traffic between the same hosts (30 and 32 packets, respectively), which could be related to services like DNS or NTP.
-   - 10.0.0.227 is also communicating with 10.0.0.255 using UDP (19 packets), which could be related to multicast or broadcast traffic.
+1. **Local Traffic (10.0.0.0/8 network):**
+   - There's significant TCP traffic between 10.0.0.10 and 10.0.0.227, with a total of 738 packets (352 + 386). This could be due to a service or application running on 10.0.0.227 that 10.0.0.10 is communicating with.
+   - There's also UDP traffic between these two IPs, with a total of 62 packets (30 + 32). This could be due to a different service or application, or possibly multicast traffic.
+   - 10.0.0.227 is also communicating with 10.0.0.255 using UDP (19 packets), which could be related to broadcast or multicast traffic.
 
 2. **External Traffic (Public IPs):**
-   - 10.0.0.227 is communicating with several external IP addresses using TCP:
+   - 10.0.0.227 is communicating with several external IPs using TCP:
      - 104.16.154.36 (6 packets)
-     - 145.14.144.10 (1968 packets)
-     - 145.14.145.4 (23 packets)
-     - 145.14.145.99 (1555 packets)
-     - 204.
+     - 145.14.144.10 (2404 packets) - This is the highest count, suggesting a significant amount of data exchange
