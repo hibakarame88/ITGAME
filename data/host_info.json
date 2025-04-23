@@ -1,0 +1,46 @@
+{
+    "hosts": [
+        {
+            "ip": "10.0.0.227",
+            "mac": "84:8f:69:09:86:c0",
+            "hostname": "239",
+            "username": null
+        },
+        {
+            "ip": "10.0.0.10",
+            "mac": "a4:1f:72:c2:09:6a",
+            "hostname": null,
+            "username": null
+        },
+        {
+            "ip": "204.2.193.137",
+            "mac": "20:e5:2a:b6:93:f1",
+            "hostname": null,
+            "username": null
+        },
+        {
+            "ip": "104.16.154.36",
+            "mac": "20:e5:2a:b6:93:f1",
+            "hostname": null,
+            "username": null
+        },
+        {
+            "ip": "145.14.145.4",
+            "mac": "20:e5:2a:b6:93:f1",
+            "hostname": null,
+            "username": null
+        },
+        {
+            "ip": "145.14.144.10",
+            "mac": "20:e5:2a:b6:93:f1",
+            "hostname": null,
+            "username": null
+        },
+        {
+            "ip": "145.14.145.99",
+            "mac": "20:e5:2a:b6:93:f1",
+            "hostname": null,
+            "username": null
+        }
+    ]
+}
